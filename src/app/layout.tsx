@@ -1,4 +1,5 @@
 
+import { Header } from "@/components/Header";
 import "../styles/global.scss";
 export const metadata = {
   title: 'Ig News',
@@ -12,6 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Header/>
+      
+      
       <body>{children}</body>
     </html>
   )
