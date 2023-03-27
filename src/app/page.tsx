@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import styles from './home.module.scss'
 import { Roboto } from 'next/font/google'
+import { SubscribeButton } from '@/components/SubscribeButton'
 
 
 const roboto = Roboto({
@@ -21,6 +22,7 @@ export default function Home() {
           Get access to all the publications <br/>
           <span>for $9.90 month</span>
         </p>
+        <SubscribeButton/>
 
       </section>
 
