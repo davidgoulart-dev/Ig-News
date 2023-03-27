@@ -1,14 +1,17 @@
 import styles from '../styles/home.module.scss'
-import { Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({
+   subsets: ['latin'],
+   weight: "400", 
+    })
 
 export default function Home() {
   return (
-    <div>
-      <h1 className={styles.title}>Hello <span>World</span></h1>
-    </div>
+    <main className={roboto.className}>
+      <h1 className={styles.title}>Hello World</h1>
+    </main>
     
   )
 }
