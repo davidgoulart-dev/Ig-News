@@ -2,33 +2,48 @@ import { Header } from '@/components/Header'
 import styles from './home.module.scss'
 import { Roboto } from 'next/font/google'
 import { SubscribeButton } from '@/components/SubscribeButton'
-
+import { getServerProduct } from '@/components/Product.server'
 
 const roboto = Roboto({
-   subsets: ['latin'],
-   weight: "400", 
-    })
+  subsets: ['latin'],
+  weight: '400',
+})
 
-export default function Home() {
-  return ( 
-  <>
-  <Header/>
-    <main className={styles.contentContainer}>
-     
-      <section className={styles.hero}>
-        <span>👏 Hey, welcome</span>
-        <h1>News about the <span>React</span> world.</h1>
-        <p>
-          Get access to all the publications <br/>
-          <span>for $9.90 month</span>
-        </p>
-        <SubscribeButton/>
+interface Product {
+  priceId: string
+  amount: number
+}
 
-      </section>
+interface HomeProps {
+  product: Product | null
+}
 
-      <img src="/images/avatar.svg" alt="Girl coding"/ >
-      
-    </main>
+export async function getServerSideProps() {
+  const product = await getServerProduct()
+  return { props: { product } }
+}
+
+const Home: React.FC<HomeProps> = ({ product })=> {
+  return (
+    <>
+      <Header />
+      <main className={styles.contentContainer}>
+        <section className={styles.hero}>
+          <span>👏 Hey, welcome</span>
+          <h1>News about the <span>React</span> world.</h1>
+          <p>
+            Get access to all the publications <br />
+            <span>for {product?.amount} month</span>
+           
+          </p>
+          <SubscribeButton />
+        </section>
+
+        <img src="/images/avatar.svg" alt="Girl coding" />
+      </main>
     </>
+    
   )
 }
+
+export default Home
